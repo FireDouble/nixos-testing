@@ -78,7 +78,7 @@
     description = "Shizu";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-    
+      
     ];
   };
   
@@ -100,7 +100,6 @@
     curl
     fastfetch
     gtop
-    libgtop
 
     tree
     home-manager

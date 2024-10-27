@@ -16,6 +16,10 @@
     hyprpicker
     pwvucontrol
     which
+    bluez
+    networkmanager
+    libgtop
+    hyprpanel
   ];
 
   programs.ags = {
