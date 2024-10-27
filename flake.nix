@@ -9,14 +9,21 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    ags = {
+      url = "github:Aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    catppuccin = { url = "github:catppuccin/nix"; };
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
     nixosConfigurations = {
-      nix = nixpkgs.lib.nixosSystem {
+      nyx = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
-          ./hosts/nix/configuration.nix
+          ./hosts/nyx/configuration.nix
           inputs.home-manager.nixosModules.default
         ];
       };

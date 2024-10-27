@@ -2,9 +2,10 @@
 
 {
   imports = [
-    ../../modules/home-manager/desktop/hyprland.nix
+    ../../modules/home-manager/hypr/hyprland.nix
+    ../../modules/home-manager/ags/ags.nix
   ];
-
+  
   home.username = "shizu";
   home.homeDirectory = "/home/shizu";
 
@@ -20,9 +21,8 @@
   };
 
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "nvim";
   };
 
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
