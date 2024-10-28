@@ -23,6 +23,8 @@
     inputs.home-manager.nixosModules.home-manager
   ];
 
+  
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.tmp.cleanOnBoot = true;
@@ -83,6 +85,8 @@
   };
   
   home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
     extraSpecialArgs = { inherit inputs; };
     backupFileExtension = "bak";
     users = {
@@ -91,6 +95,7 @@
   };
 
   programs.firefox.enable = true;
+  programs.hyprland.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 

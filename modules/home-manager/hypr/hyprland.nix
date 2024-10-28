@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     swww
-    libnotify
+    rofi-wayland
 
     firefox
     vesktop
@@ -116,7 +116,6 @@
       };
 
 
-
       dwindle = {
         pseudotile = true;
         preserve_split = true;
@@ -141,7 +140,7 @@
         "$mainMod, E, exec, ${pkgs.nautilus}/bin/nautilus -w"
         "$mainMod, V, togglefloating"
         "$mainMod, S, exec, ${pkgs.grimblast}/bin/grimblast --freeze copy area"
-        # "$mainMod, SPACE, exec, $menu"
+        "$mainMod, SPACE, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun"
 
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"

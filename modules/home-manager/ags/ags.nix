@@ -2,36 +2,46 @@
 
 {
   # add the home manager module
-  # imports = [ inputs.ags.homeManagerModules.default ];
+  imports = [ inputs.ags.homeManagerModules.default ];
 
   home.packages = with pkgs; [
-    ags
+    esbuild
+    fish
+    typescript
     bun
+    libnotify
     dart-sass
-    sassc
     fd
-    brightnessctl
-    slurp
-    wl-clipboard
-    swappy
-    hyprpicker
-    pwvucontrol
-    which
+    btop
     bluez
-    networkmanager
     libgtop
+    gobject-introspection
+    glib
+    bluez-tools
+    grimblast
+    gpu-screen-recorder
+    brightnessctl
+    gnome-bluetooth
+    python3
+    matugen
+
+
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
-  # programs.ags = {
-  #   enable = true;
+  fonts.fontconfig.enable = true;
 
-  #   # null or path, leave as null if you don't want hm to manage the config
-  #   # configDir = ../ags;
-  #   configDir = null;
 
-  #   # additional packages to add to gjs's runtime
-  #   extraPackages = with pkgs; [
-  #     accountsservice
-  #   ];
-  # };
+  programs.ags = {
+    enable = true;
+
+    # null or path, leave as null if you don't want hm to manage the config
+    configDir = ./config;
+    # configDir = null;
+
+    # additional packages to add to gjs's runtime
+    extraPackages = with pkgs; [
+      accountsservice
+    ];
+  };
 }
