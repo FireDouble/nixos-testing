@@ -99,7 +99,6 @@
     git
     curl
     fastfetch
-    gtop
 
     tree
     home-manager
