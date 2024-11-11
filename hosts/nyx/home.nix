@@ -1,27 +1,25 @@
-{ config, pkgs, ... }:
-
+{ ... }:
 {
   imports = [
-    ../../modules/home-manager/hypr/hyprland.nix
-    ../../modules/home-manager/ags/ags.nix
-  ];
-  
-  home.username = "shizu";
-  home.homeDirectory = "/home/shizu";
-
-  home.stateVersion = "24.05"; 
-  
-  home.packages = with pkgs; [
-    
+    ../../modules/home-manager/apps/apps.nix
+    ../../modules/home-manager/cli/cli.nix
+    ../../modules/home-manager/desktop/desktop.nix
   ];
 
- 
-  home.file = {
-    
+  home = {
+    username = "shizu";
+    homeDirectory = "/home/shizu";
+    stateVersion = "24.05";
   };
+
+  home.file =
+    {
+    };
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    NIXOS_OZONE_WL = "1";
+    NIX_REMOTE = "daemon";
   };
 
   programs.home-manager.enable = true;

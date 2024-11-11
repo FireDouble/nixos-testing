@@ -1,9 +1,8 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, inputs, ... }:
-
+{
+  pkgs,
+  inputs,
+  ...
+}:
 {
   nix = {
     package = pkgs.lix;
@@ -15,19 +14,23 @@
     };
   };
 
-  
   imports = [
     ./hardware-configuration.nix
-    ../../modules/nixos/games/games.nix
-    ../../modules/nixos/catppuccin.nix
+    ../../modules/nixos/games/default.nix
+    ../../modules/nixos/themes/catppuccin.nix
     inputs.home-manager.nixosModules.home-manager
   ];
 
-  
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.tmp.cleanOnBoot = true;
+  boot = {
+    tmp.cleanOnBoot = true;
+    loader = {
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 5;
+      };
+      efi.canTouchEfiVariables = true;
+    };
+  };
 
   networking.hostName = "nyx";
 
@@ -49,19 +52,20 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  services.xserver.enable = true;
+  services = {
+    xserver = {
+      enable = true;
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
+    };
 
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+    printing.enable = true;
   };
 
-  services.printing.enable = true;
-
-  
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -78,43 +82,56 @@
   users.users.shizu = {
     isNormalUser = true;
     description = "Shizu";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      
+    extraGroups = [
+      "networkmanager"
+      "wheel"
     ];
+    shell = pkgs.fish;
+    packages =
+      with pkgs;
+      [
+      ];
   };
-  
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {
+      inherit inputs;
+    };
     backupFileExtension = "bak";
     users = {
       shizu = import ./home.nix;
     };
   };
 
-  programs.firefox.enable = true;
-  programs.hyprland.enable = true;
+  programs.fish.enable = true;
+
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
 
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    neovim
+    home-manager
+
+    catppuccin-cursors.mochaLavender
+    nwg-look
+    vesktop
+    pavucontrol
+
     git
     curl
-    fastfetch
-
     tree
-    home-manager
-    kitty
+    unzip
     cmatrix
-    rofi-wayland
-    vesktop
-    firefox
+    fastfetch
+    nixfmt-rfc-style
+
     vscode
   ];
 
   system.stateVersion = "24.05";
-
 }
