@@ -112,15 +112,26 @@
     xwayland.enable = true;
   };
 
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 75;
+  };
+
+
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
     home-manager
 
+    gimp
+    dipc
+
     catppuccin-cursors.mochaLavender
     nwg-look
     vesktop
     pavucontrol
+    blueman
 
     git
     curl
@@ -130,8 +141,11 @@
     fastfetch
     nixfmt-rfc-style
 
+
+    prismlauncher
     vscode
   ];
+
 
   system.stateVersion = "24.05";
 }

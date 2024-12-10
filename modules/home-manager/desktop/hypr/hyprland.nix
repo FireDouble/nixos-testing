@@ -34,6 +34,7 @@
         exec-once = [
           "swww-daemon"
           "ags"
+          "blueman-applet"
 
           "hyprctl setcursor catppuccin-mocha-lavender 24"
         ];
@@ -41,8 +42,8 @@
         "$mainMod" = "SUPER";
 
         input = {
-          kb_layout = "us";
-          kb_options = "caps:escape, fkeys:basic_1-12";
+          kb_layout = "us, pl";
+          kb_options = "caps:escape, fkeys:basic_1-12, grp:alt_space_toggle";
           follow_mouse = 1;
           sensitivity = "-0.6";
         };
@@ -150,6 +151,7 @@
             "$mainMod, V, togglefloating"
 
             "$mainMod, S, exec, ${pkgs.grimblast}/bin/grimblast --freeze --wait 1 copy area"
+            "$mainMod SHIFT, S, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a -r"
             "$mainMod, L, exec, ${pkgs.hyprlock}/bin/hyprlock"
             "$mainMod, E, exec, ${pkgs.nautilus}/bin/nautilus"
             "$mainMod, Q, exec, ${pkgs.kitty}/bin/kitty"

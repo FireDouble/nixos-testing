@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 
 {
   options = {
@@ -8,11 +8,6 @@
   config = lib.mkIf config.fish.enable {
     programs.fish = {
       enable = true;
-
-      functions = {
-        nt = "sudo nixos-rebuild test --flake $argv";
-        ns = "sudo nixos-rebuild switch --flake $argv";
-      };
     };
   };
 }

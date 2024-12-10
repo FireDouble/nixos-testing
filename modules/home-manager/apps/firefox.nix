@@ -16,6 +16,7 @@
       profiles.shizu = {
         settings = {
           "extensions.autoDisableScopes" = 0;
+          "sidebar.verticalTabs" = true;
         };
 
         bookmarks = [
@@ -70,6 +71,32 @@
                 ];
               }
               {
+                name = "NixOS";
+                bookmarks = [
+                  {
+                    name = "Nix Search";
+                    url = "https://search.nixos.org/packages";
+                  }
+                  {
+                    name = "Pingu NixOS config";
+                    url = "https://github.com/blahai/nyx";
+                  }
+                  {
+                    name = "FireFox Color Catppuccin";
+                    url = "https://github.com/catppuccin/firefox";
+                  }
+                ];
+              }
+              {
+                name = "Coding";
+                bookmarks = [
+                  {
+                    name = "Github";
+                    url = "https://github.com/";
+                  }
+                ];
+              }
+              {
                 name = "Other";
                 bookmarks = [
                   {
@@ -83,14 +110,6 @@
                   {
                     name = "ChatGPT";
                     url = "https://chatgpt.com/";
-                  }
-                  {
-                    name = "Pingu NixOS config";
-                    url = "https://github.com/blahai/nyx";
-                  }
-                  {
-                    name = "FireFox Color Catppuccin";
-                    url = "https://github.com/catppuccin/firefox";
                   }
                 ];
               }
@@ -110,17 +129,26 @@
             icon = "circle";
             id = 3;
           };
-          "3. Other" = {
+          "3. NixOS" = {
             color = "blue";
             icon = "circle";
             id = 4;
+          };
+          "4. Coding" = {
+            color = "green";
+            icon = "circle";
+            id = 5;
+          };
+          "5. Other" = {
+            color = "turquoise";
+            icon = "circle";
+            id = 6;
           };
         };
 
         extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
           sponsorblock
           adblocker-ultimate
-          adnauseam
           multi-account-containers
           return-youtube-dislikes
           firefox-color

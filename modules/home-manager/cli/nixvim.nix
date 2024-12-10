@@ -27,6 +27,15 @@
 
       colorschemes.catppuccin.enable = true;
 
+      opts = {
+        relativenumber = true;
+
+      };
+
+      diagnostics = {
+        update_in_insert = true;
+      };
+
       keymaps = [
         {
           action = "<cmd>Oil<CR>";
@@ -42,16 +51,18 @@
         lsp = {
           enable = true;
           servers = {
+            rust_analyzer = {
+              enable = true;
+              installCargo = false;
+              installRustc = false;
+            };
             nixd.enable = true;
           };
         };
 
         arrow.enable = true;
-        auto-session.enable = true;
         autoclose.enable = true;
         blink-cmp.enable = true;
-        ccc.enable = true;
-        comment.enable = true;
         fugitive.enable = true;
         gitignore.enable = true;
         guess-indent.enable = true;
@@ -70,7 +81,6 @@
         vim-surround.enable = true;
         web-devicons.enable = true;
         which-key.enable = true;
-        wilder.enable = true;
         wtf.enable = true;
       };
     };
